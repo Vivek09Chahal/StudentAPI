@@ -2,7 +2,6 @@ package main
 
 import (
 	"context"
-	"fmt"
 	"log"
 	"log/slog"
 	"net/http"
@@ -12,12 +11,12 @@ import (
 	"time"
 
 	"github.com/Vivek09Chahal/student_api/internal/config"
-	"github.com/go-playground/locales/sl"
+	"github.com/Vivek09Chahal/student_api/internal/http/handelers/student"
 )
 
 func main() {
     // load config
-
+ 
     cfg := config.MustLoad()
     
     // database setup
@@ -25,9 +24,7 @@ func main() {
     // setup router
     router := http.NewServeMux()
 
-    router.HandleFunc("GET /api/student", func(w http.ResponseWriter, r *http.Request) {
-        w.Write([]byte("Welcome to students api"))
-    })
+    router.HandleFunc("GET /api/students", student.New())
     
     // setup server
     server := http.Server {
