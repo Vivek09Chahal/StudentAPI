@@ -45,3 +45,10 @@ func ValidatonError(errs validator.ValidationErrors) Response {
         Error: strings.Join(errMsg, ","),
     }
 }
+
+func GeneralError(err error) Response {
+    return Response{
+        Status: StatusError,
+        Error: err.Error(),
+    }
+}
